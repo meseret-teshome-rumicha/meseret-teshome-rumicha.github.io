@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://meseret-teshome-rumicha.netlify.app/sitemap.xml
+Sitemap: https://meseret-teshome-rumicha.github.io/sitemap.xml
