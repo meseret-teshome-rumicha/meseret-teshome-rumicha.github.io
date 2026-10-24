@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Interactive sentence-writing puzzles for university EFL learners: sentence elements, relative clauses, sentence functions, and sentence structures.">
+<title>Sentence Writing Puzzles | Academic Writing Resources</title>
+<style>
+  :root {
+    --ink: #172b4d;
+    --muted: #52647a;
+    --blue: #176b87;
+    --blue-dark: #104c63;
+    --pale: #eaf5f8;
+    --paper: #ffffff;
+    --line: #d8e3ea;
+    --gold: #f0c66e;
+    --soft: #f5f8fb;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: #f3f7fa;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.65;
+  }
+  header {
+    color: white;
+    background: linear-gradient(125deg, #104c63, #176b87 65%, #258ca0);
+    padding: 3rem 1.25rem 2.5rem;
+  }
+  .hero, main, footer { width: min(1080px, calc(100% - 2rem)); margin: auto; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; font-weight: 700; color: #d4edf3; }
+  h1 { margin: .45rem 0 .5rem; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.12; }
+  header p { max-width: 760px; margin: .6rem 0 0; color: #edf9fc; font-size: 1.08rem; }
+  .hero-note { display: inline-block; margin-top: 1.25rem; padding: .45rem .8rem; border: 1px solid #b4dce5; border-radius: 999px; font-size: .9rem; }
+  main { padding: 1.5rem 0 3rem; }
+  .intro, .puzzle, .answers, .tools {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    padding: clamp(1rem, 3vw, 1.6rem); margin: 1rem 0; box-shadow: 0 5px 18px rgba(23,43,77,.045);
+  }
+  h2 { margin: 0 0 .6rem; font-size: 1.55rem; }
+  h3 { margin: 0 0 .45rem; font-size: 1.15rem; }
+  .muted { color: var(--muted); }
+  .tabs { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.2rem 0; }
+  .tab, button {
+    border: 0; border-radius: 9px; padding: .72rem 1rem; font: inherit; font-weight: 700;
+    cursor: pointer; transition: background .15s, transform .15s;
+  }
+  .tab { background: #dcebf0; color: var(--blue-dark); }
+  .tab[aria-selected="true"] { background: var(--blue); color: white; }
+  button { background: var(--blue); color: white; }
+  button:hover, .tab:hover { transform: translateY(-1px); }
+  button.secondary { background: #e6eef3; color: var(--ink); }
+  .panel[hidden] { display: none; }
+  .section-label { color: var(--blue); text-transform: uppercase; font-weight: 700; letter-spacing: .08em; font-size: .76rem; }
+  .task { background: var(--pale); border-left: 4px solid var(--blue); border-radius: 7px; padding: .8rem 1rem; margin: .8rem 0 1rem; }
+  .item { padding: .85rem 0; border-bottom: 1px solid var(--line); }
+  .item:last-child { border-bottom: 0; }
+  .sentence { font-size: 1.03rem; }
+  .letter { display: inline-block; min-width: 1.65rem; font-weight: 700; color: var(--blue); }
+  label { display: block; font-weight: 700; margin: .55rem 0 .25rem; }
+  input[type="text"], textarea, select {
+    width: 100%; border: 1px solid #b9cbd5; border-radius: 8px; padding: .7rem .75rem;
+    font: inherit; color: var(--ink); background: #fff;
+  }
+  textarea { min-height: 76px; resize: vertical; }
+  .answer { display: none; background: #f2f8f1; border: 1px solid #cfe4c9; padding: .8rem 1rem; border-radius: 8px; margin-top: .6rem; }
+  .answer.visible { display: block; }
+  .answer strong { color: #245c2b; }
+  .answers { background: #fbfcfd; }
+  .answers details { border-top: 1px solid var(--line); padding: .75rem 0; }
+  summary { cursor: pointer; font-weight: 700; color: var(--blue-dark); }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .callout { padding: .9rem 1rem; background: #fff8e8; border-left: 4px solid var(--gold); border-radius: 7px; }
+  .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+  footer { color: var(--muted); text-align: center; padding: 1.5rem 0 2rem; font-size: .9rem; }
+  @media (max-width: 650px) { .grid { grid-template-columns: 1fr; } header { padding-top: 2.2rem; } }
+  @media print {
+    body { background: white; }
+    header { background: white; color: black; padding: 1rem 0; }
+    header p, .eyebrow, .hero-note { color: black; }
+    main, .hero, footer { width: 100%; }
+    .tabs, .actions, .tools { display: none !important; }
+    .intro, .puzzle, .answers { box-shadow: none; break-inside: avoid; }
+    .panel[hidden] { display: block !important; }
+    .answer { display: block; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="hero">
+    <div class="eyebrow">Academic Writing Resources</div>
+    <h1>Sentence Writing Puzzles</h1>
+    <p>Practise sentence elements, relative clauses, sentence functions, and sentence structures through guided activities designed for university-level English learners.</p>
+    <span class="hero-note">Learn • Practise • Check your answers</span>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <h2>How to use this page</h2>
+    <p>Choose a worksheet below, complete each activity, and then reveal the suggested answers. For open-ended tasks, compare your response with the model answer and check whether your sentence follows the stated grammatical requirements.</p>
+    <p class="muted">Tip: Try each puzzle before opening its answer. You can print the page or save your responses by copying them into your own document.</p>
+  </section>
+
+  <nav class="tabs" aria-label="Choose a worksheet">
+    <button class="tab" id="basicTab" role="tab" aria-selected="true" aria-controls="basicPanel">1. Basic Writing Skills</button>
+    <button class="tab" id="advancedTab" role="tab" aria-selected="false" aria-controls="advancedPanel">2. EFL Advanced Puzzles</button>
+  </nav>
+
+  <section class="panel" id="basicPanel" role="tabpanel" aria-labelledby="basicTab">
+    <div class="intro">
+      <div class="section-label">Worksheet 1 · University level</div>
+      <h2>Basic Writing Skills: Sentence Mastery</h2>
+      <p class="muted">Course: Academic English &amp; Grammar · Topic: Clauses, Functions &amp; Sentence Structures</p>
+      <p>Student name: ____________________ &nbsp; Student ID: ____________________ &nbsp; Date: ______________</p>
+    </div>
+
+    <section class="puzzle">
+      <div class="section-label">Module 1 · Sentence elements</div>
+      <h2>Identifying Subject and Predicate</h2>
+      <div class="task">Underline the complete subject once and the complete predicate twice. Then enter the simple subject and simple predicate (verb).</div>
+      <div class="item">
+        <div class="sentence"><span class="letter">A.</span>The diligent university students researched in the library all afternoon.</div>
+        <div class="grid">
+          <div><label for="b1a">Simple subject</label><input id="b1a" type="text" placeholder="Your answer"></div>
+          <div><label for="b1b">Simple predicate (verb)</label><input id="b1b" type="text" placeholder="Your answer"></div>
+        </div>
+        <div class="answer" id="ba1"><strong>Suggested answer:</strong> Simple subject: students. Simple predicate: researched.</div>
+      </div>
+      <div class="item">
+        <div class="sentence"><span class="letter">B.</span>Several historical documents on the desk belong to the archives department.</div>
+        <div class="grid">
+          <div><label for="b2a">Simple subject</label><input id="b2a" type="text" placeholder="Your answer"></div>
+          <div><label for="b2b">Simple predicate (verb)</label><input id="b2b" type="text" placeholder="Your answer"></div>
+        </div>
+        <div class="answer" id="ba2"><strong>Suggested answer:</strong> Simple subject: documents. Simple predicate: belong. Words inside the prepositional phrase “on the desk” are not part of the simple subject.</div>
+      </div>
+      <button class="secondary reveal" data-target="ba1,ba2">Reveal answers for Module 1</button>
+    </section>
+
+    <section class="puzzle">
+      <div class="section-label">Module 2 · Clause analysis</div>
+      <h2>Defining and Non-Defining Relative Clauses</h2>
+      <div class="task">Identify each relative clause as defining (essential) or non-defining (non-essential). Add commas where necessary.</div>
+      <div class="item">
+        <div class="sentence"><span class="letter">A.</span>The professor who teaches computer science won an international research award.</div>
+        <label for="b3">Clause type and punctuation correction</label>
+        <input id="b3" type="text" placeholder="Write your answer">
+        <div class="answer" id="ba3"><strong>Suggested answer:</strong> Defining (essential). No commas are needed because the clause identifies which professor.</div>
+      </div>
+      <div class="item">
+        <div class="sentence"><span class="letter">B.</span>My primary reference book which was published in 2021 contains detailed case studies.</div>
+        <label for="b4">Clause type and punctuation correction</label>
+        <input id="b4" type="text" placeholder="Write your answer">
+        <div class="answer" id="ba4"><strong>Suggested answer:</strong> Non-defining (non-essential). My primary reference book, which was published in 2021, contains detailed case studies.</div>
+      </div>
+      <button class="secondary reveal" data-target="ba3,ba4">Reveal answers for Module 2</button>
+    </section>
+
+    <section class="puzzle">
+      <div class="section-label">Module 3 · Functional types</div>
+      <h2>Types of Sentences by Function</h2>
+      <div class="task">Classify each sentence as declarative, interrogative, imperative, or exclamatory. Insert the correct end punctuation.</div>
+      <div class="item"><div class="sentence"><span class="letter">A.</span>Submit your final project draft by Friday at midnight ___</div><label for="b5">Sentence type and corrected sentence</label><input id="b5" type="text" placeholder="Your answer"><div class="answer" id="ba5"><strong>Suggested answer:</strong> Imperative — Submit your final project draft by Friday at midnight.</div></div>
+      <div class="item"><div class="sentence"><span class="letter">B.</span>How remarkable this groundbreaking scientific discovery is ___</div><label for="b6">Sentence type and corrected sentence</label><input id="b6" type="text" placeholder="Your answer"><div class="answer" id="ba6"><strong>Suggested answer:</strong> Exclamatory — How remarkable this groundbreaking scientific discovery is!</div></div>
+      <div class="item"><div class="sentence"><span class="letter">C.</span>Did the research team complete the data analysis yesterday ___</div><label for="b7">Sentence type and corrected sentence</label><input id="b7" type="text" placeholder="Your answer"><div class="answer" id="ba7"><strong>Suggested answer:</strong> Interrogative — Did the research team complete the data analysis yesterday?</div></div>
+      <div class="item"><div class="sentence"><span class="letter">D.</span>Renewable energy resources play a vital role in modern infrastructure ___</div><label for="b8">Sentence type and corrected sentence</label><input id="b8" type="text" placeholder="Your answer"><div class="answer" id="ba8"><strong>Suggested answer:</strong> Declarative — Renewable energy resources play a vital role in modern infrastructure.</div></div>
+      <button class="secondary reveal" data-target="ba5,ba6,ba7,ba8">Reveal answers for Module 3</button>
+    </section>
+
+    <section class="puzzle">
+      <div class="section-label">Module 4 · Structural types</div>
+      <h2>Types of Sentences by Structure</h2>
+      <div class="task">Identify each sentence as simple, compound, complex, or compound-complex.</div>
+      <div class="item"><div class="sentence"><span class="letter">A.</span>Although the exam was challenging, Daniel prepared thoroughly, and he achieved the highest grade.</div><label for="b9">Sentence structure</label><input id="b9" type="text" placeholder="Your answer"><div class="answer" id="ba9"><strong>Suggested answer:</strong> Compound-complex: two independent clauses and one dependent clause.</div></div>
+      <div class="item"><div class="sentence"><span class="letter">B.</span>The author explained her core hypothesis during the opening keynote session.</div><label for="b10">Sentence structure</label><input id="b10" type="text" placeholder="Your answer"><div class="answer" id="ba10"><strong>Suggested answer:</strong> Simple: one independent clause.</div></div>
+      <div class="item"><div class="sentence"><span class="letter">C.</span>The lab assistant cleaned the equipment, and the researcher recorded the daily metrics.</div><label for="b11">Sentence structure</label><input id="b11" type="text" placeholder="Your answer"><div class="answer" id="ba11"><strong>Suggested answer:</strong> Compound: two independent clauses joined by the coordinating conjunction “and.”</div></div>
+      <div class="item"><div class="sentence"><span class="letter">D.</span>Because the rain was continuous, the field study was postponed until next week.</div><label for="b12">Sentence structure</label><input id="b12" type="text" placeholder="Your answer"><div class="answer" id="ba12"><strong>Suggested answer:</strong> Complex: one dependent clause and one independent clause.</div></div>
+      <button class="secondary reveal" data-target="ba9,ba10,ba11,ba12">Reveal answers for Module 4</button>
+    </section>
+  </section>
+
+  <section class="panel" id="advancedPanel" role="tabpanel" aria-labelledby="advancedTab" hidden>
+    <div class="intro">
+      <div class="section-label">Worksheet 2 · Upper-intermediate to advanced</div>
+      <h2>EFL Advanced Sentence Writing Puzzles</h2>
+      <p class="muted">Course: Academic English &amp; Syntax · Level: University / Upper-Intermediate to Advanced</p>
+      <p>Student name: ____________________ &nbsp; Student ID: ____________________ &nbsp; Date: ______________</p>
+    </div>
+
+    <section class="puzzle">
+      <div class="section-label">Puzzle 1 · Sentence mechanics</div>
+      <h2>Subject and Predicate Division</h2>
+      <div class="task">For each sentence: (1) draw a vertical line (|) between the complete subject and complete predicate; (2) identify the simple subject; and (3) identify the main verb or auxiliary.</div>
+      <div class="item"><div class="sentence"><span class="letter">A.</span>The rapid advancement of artificial intelligence tools in higher education has transformed traditional assessment methods.</div><label for="a1">Divide the subject and predicate; identify simple subject and main verb/auxiliary</label><textarea id="a1" placeholder="Write your analysis"></textarea><div class="answer" id="aa1"><strong>Suggested answer:</strong> The rapid advancement of artificial intelligence tools in higher education | has transformed traditional assessment methods. Simple subject: advancement. Main verb phrase: has transformed.</div></div>
+      <div class="item"><div class="sentence"><span class="letter">B.</span>Determining the validity of the research methodology took the committee several months.</div><label for="a2">Write your analysis</label><textarea id="a2" placeholder="Write your analysis"></textarea><div class="answer" id="aa2"><strong>Suggested answer:</strong> Determining the validity of the research methodology | took the committee several months. Simple subject: Determining the validity of the research methodology (the gerund phrase functions as the subject); main verb: took.</div></div>
+      <div class="item"><div class="sentence"><span class="letter">C.</span>Among the factors influencing consumer choices, social media advertising remains the most dominant.</div><label for="a3">Write your analysis</label><textarea id="a3" placeholder="Write your analysis"></textarea><div class="answer" id="aa3"><strong>Suggested answer:</strong> Among the factors influencing consumer choices, social media advertising | remains the most dominant. Simple subject: advertising (within the noun phrase “social media advertising”); main verb: remains.</div></div>
+      <button class="secondary reveal" data-target="aa1,aa2,aa3">Reveal answers for Puzzle 1</button>
+    </section>
+
+    <section class="puzzle">
+      <div class="section-label">Puzzle 2 · Defining vs. non-defining</div>
+      <h2>Relative Clause Reconstruction</h2>
+      <div class="task">Combine each pair of statements into one sentence using a relative clause. Use appropriate pronouns and commas.</div>
+      <div class="item"><h3>1. Specific condition (defining clause)</h3><p>Statement A: The survey respondents were excluded from the final analysis.</p><p>Statement B: These respondents submitted incomplete questionnaires.</p><label for="a4">Combine the statements</label><textarea id="a4" placeholder="Write one sentence"></textarea><div class="answer" id="aa4"><strong>Suggested answer:</strong> The survey respondents who submitted incomplete questionnaires were excluded from the final analysis. “That” is also acceptable, although “who” is preferred for people in academic writing.</div></div>
+      <div class="item"><h3>2. Extra background context (non-defining clause)</h3><p>Statement A: Oxford University was founded in the 12th century.</p><p>Statement B: Oxford University is one of the oldest higher education institutions.</p><label for="a5">Combine the statements</label><textarea id="a5" placeholder="Write one sentence"></textarea><div class="answer" id="aa5"><strong>Suggested answer:</strong> Oxford University, which is one of the oldest higher education institutions in the world, was founded in the 12th century.</div></div>
+      <button class="secondary reveal" data-target="aa4,aa5">Reveal answers for Puzzle 2</button>
+    </section>
+
+    <section class="puzzle">
+      <div class="section-label">Puzzle 3 · Functional registers</div>
+      <h2>Academic Sentence Functions</h2>
+      <p><strong>Base idea:</strong> “The data contains severe statistical anomalies.”</p>
+      <div class="task">Rewrite the idea in each required formal academic register.</div>
+      <div class="item"><h3>A. Formal interrogative (research question)</h3><label for="a6">Your research question</label><textarea id="a6" placeholder="Write a formal research question"></textarea><div class="answer" id="aa6"><strong>Suggested answer:</strong> To what extent do these statistical anomalies compromise the overall validity of the dataset?</div></div>
+      <div class="item"><h3>B. Academic imperative (research directive)</h3><label for="a7">Your research directive</label><textarea id="a7" placeholder="Write a formal directive"></textarea><div class="answer" id="aa7"><strong>Suggested answer:</strong> Examine the raw data carefully to identify the underlying cause of these statistical anomalies.</div></div>
+      <div class="item"><h3>C. Formal academic exclamatory (emphatic statement)</h3><label for="a8">Your emphatic academic statement</label><textarea id="a8" placeholder="Write a formal emphatic statement"></textarea><div class="answer" id="aa8"><strong>Suggested answers:</strong> How remarkably inconsistent these dataset results are compared to established baseline figures! <br>OR: Seldom have researchers encountered such severe statistical anomalies in a controlled study!</div></div>
+      <button class="secondary reveal" data-target="aa6,aa7,aa8">Reveal answers for Puzzle 3</button>
+    </section>
+
+    <section class="puzzle">
+      <div class="section-label">Puzzle 4 · Sentence structure</div>
+      <h2>Structural Code-Breaking</h2>
+      <div class="task">Use the sentence blocks to construct the requested sentence structures.</div>
+      <div class="callout"><strong>Block 1:</strong> Although the economic policy promised inflation reduction…<br><strong>Block 2:</strong> The national currency continued to depreciate…<br><strong>Block 3:</strong> Foreign investors withdrew their capital…</div>
+      <div class="item"><h3>A. Complex sentence (CX): use Blocks 1 and 2</h3><label for="a9">Write your sentence</label><textarea id="a9" placeholder="Construct a complex sentence"></textarea><div class="answer" id="aa9"><strong>Suggested answer:</strong> Although the economic policy promised rapid inflation reduction, the national currency continued to depreciate.</div></div>
+      <div class="item"><h3>B. Compound-complex sentence (CCX): combine Blocks 1, 2, and 3</h3><label for="a10">Write your sentence</label><textarea id="a10" placeholder="Construct a compound-complex sentence"></textarea><div class="answer" id="aa10"><strong>Suggested answer:</strong> Although the economic policy promised rapid inflation reduction, the national currency continued to depreciate, and foreign investors withdrew their capital from local markets.</div></div>
+      <button class="secondary reveal" data-target="aa9,aa10">Reveal answers for Puzzle 4</button>
+    </section>
+  </section>
+
+  <section class="tools">
+    <h2>Study tools</h2>
+    <p class="muted">Use the controls to reveal all model answers in the selected worksheet or print the activity for classroom use.</p>
+    <div class="actions">
+      <button id="showAll">Reveal all answers in this worksheet</button>
+      <button class="secondary" id="hideAll">Hide all answers</button>
+      <button class="secondary" id="printPage">Print worksheet</button>
+      <button class="secondary" id="clearInputs">Clear my responses</button>
+    </div>
+    <p class="muted" id="status" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer>
+  <p><strong>Academic Writing Resources</strong> · Sentence Writing Puzzles</p>
+  <p>Learning resource for English language learners and university students.</p>
+</footer>
+
+<script>
+  const tabs = [
+    {button: document.getElementById('basicTab'), panel: document.getElementById('basicPanel')},
+    {button: document.getElementById('advancedTab'), panel: document.getElementById('advancedPanel')}
+  ];
+  function activateTab(index) {
+    tabs.forEach((tab, i) => {
+      const active = i === index;
+      tab.button.setAttribute('aria-selected', String(active));
+      tab.panel.hidden = !active;
+    });
+    document.getElementById('status').textContent = index === 0
+      ? 'Basic Writing Skills worksheet selected.'
+      : 'EFL Advanced Sentence Writing Puzzles worksheet selected.';
+  }
+  tabs.forEach((tab, index) => tab.button.addEventListener('click', () => activateTab(index)));
+
+  document.querySelectorAll('.reveal').forEach(button => {
+    button.addEventListener('click', () => {
+      const ids = button.dataset.target.split(',');
+      const answers = ids.map(id => document.getElementById(id)).filter(Boolean);
+      const shouldShow = answers.some(answer => !answer.classList.contains('visible'));
+      answers.forEach(answer => answer.classList.toggle('visible', shouldShow));
+      button.textContent = shouldShow ? 'Hide these answers' : 'Reveal these answers';
+    });
+  });
+
+  function currentPanel() {
+    return tabs.find(tab => !tab.panel.hidden)?.panel || tabs[0].panel;
+  }
+  document.getElementById('showAll').addEventListener('click', () => {
+    currentPanel().querySelectorAll('.answer').forEach(answer => answer.classList.add('visible'));
+    currentPanel().querySelectorAll('.reveal').forEach(button => button.textContent = 'Hide these answers');
+    document.getElementById('status').textContent = 'All answers in the selected worksheet are visible.';
+  });
+  document.getElementById('hideAll').addEventListener('click', () => {
+    currentPanel().querySelectorAll('.answer').forEach(answer => answer.classList.remove('visible'));
+    currentPanel().querySelectorAll('.reveal').forEach(button => button.textContent = button.dataset.originalLabel || 'Reveal answers');
+    document.getElementById('status').textContent = 'Answers hidden.';
+  });
+  document.querySelectorAll('.reveal').forEach(button => button.dataset.originalLabel = button.textContent);
+  document.getElementById('printPage').addEventListener('click', () => window.print());
+  document.getElementById('clearInputs').addEventListener('click', () => {
+    const inputs = currentPanel().querySelectorAll('input[type="text"], textarea');
+    inputs.forEach(input => input.value = '');
+    document.getElementById('status').textContent = 'Responses in the selected worksheet have been cleared.';
+  });
+</script>
+</body>
+</html>
